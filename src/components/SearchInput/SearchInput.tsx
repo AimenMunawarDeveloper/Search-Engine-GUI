@@ -18,7 +18,8 @@ const SearchInput: FC<SearchInputProps> = ({onFinish}) => {
       size="large"
       onSearch={onSearch}
      />
-  </div>);
+  </div>
+  );
 };
 
 export default SearchInput;

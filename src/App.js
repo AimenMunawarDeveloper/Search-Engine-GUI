@@ -6,16 +6,13 @@ import Footer from "./components/Footer/Footer.tsx";
 
 function App() {
   return (
-    <>
+    <div className="content">
       <Header />
       <div>
         <SearchForm />
-        <div>
-          <SearchResult />
-        </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 }
 

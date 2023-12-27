@@ -5,7 +5,11 @@ interface FooterProps {}
 
 const Footer: FC<FooterProps> = () => (
   <div className={styles.Footer} data-testid="Footer">
-    Footer Component
+    <div className={styles.FooterContent}>
+      <div className={styles.FooterText}>
+        <p>&copy; 2023 Gaggle. All rights reserved.</p>
+      </div>
+    </div>
   </div>
 );
 

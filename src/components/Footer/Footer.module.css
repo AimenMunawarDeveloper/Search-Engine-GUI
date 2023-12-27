@@ -1,1 +1,38 @@
-.Footer {}
+/* Footer.module.css */
+.Footer {
+    background-color: #282c34;
+    color: #61dafb;
+    padding: 20px 0;
+    text-align: center;
+  }
+  
+  .FooterContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .FooterText {
+    flex: 1;
+  }
+  
+  .FooterLinks {
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+  }
+  
+  .FooterLinks a {
+    color: #61dafb;
+    text-decoration: none;
+  }
+  
+  .FooterLinks a:hover {
+    text-decoration: underline;
+  }
+  
