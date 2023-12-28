@@ -6,15 +6,20 @@ import { UploadOutlined } from '@ant-design/icons';
 import type { UploadProps } from 'antd';
 
 const UploadFileInput: FC = () => {
-  const sendFileContentAPI = (query) => {
-    fetch('http://127.0.0.1:8000/api/search-api/', {
-      method: "POST",
-      body: JSON.stringify({ query }),
+  const sendFileContentAPI = (file) => {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    fetch('http://127.0.0.1:8000/api/upload-file-api/', {
+      method: 'POST',
+      // ... (other options)
+      body: formData,
     })
-      .then(response => response.json())
-      .then(json => console.log('file send content response', json))
-      .catch(error => console.error('Error fetching search API:', error));
-  }
+      .then((response) => response.json())
+      .then((json) => console.log('file send content response', json))
+      .catch((error) => console.error('Error fetching search API:', error));
+  };
+
   const props: UploadProps = {
     name: 'file',
     action: 'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188',
@@ -25,9 +30,9 @@ const UploadFileInput: FC = () => {
       if (info.file.status !== 'uploading') {
         console.log(info.file, info.fileList);
       }
-      if (info.file.status === 'done') 
-      {
-        console.log("File uploaded Information",info);
+      if (info.file.status === 'done') {
+        console.log('File uploaded Information', info);
+        sendFileContentAPI(info.file.originFileObj);
         message.success(`${info.file.name} file uploaded successfully`);
       } else if (info.file.status === 'error') {
         message.error(`${info.file.name} file upload failed.`);
@@ -36,11 +41,11 @@ const UploadFileInput: FC = () => {
   };
 
   return(
-  <div data-testid="SearchInput">
+    <div data-testid="SearchInput">
       <Upload {...props}>
-    <Button icon={<UploadOutlined />}>Click to Upload</Button>
-  </Upload>
-  </div>
+        <Button icon={<UploadOutlined />}>Click to Upload</Button>
+      </Upload>
+    </div>
   );
 };
 
