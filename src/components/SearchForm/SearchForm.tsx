@@ -15,7 +15,6 @@ const SearchForm: FC<SearchFormProps> = () => {
   const callSearchAPI = (query) => {
     fetch('http://127.0.0.1:8000/api/search-api/', {
       method: "POST",
-      // ... (other options)
       body: JSON.stringify({ query }),
     })
       .then(response => response.json())
@@ -37,6 +36,7 @@ const SearchForm: FC<SearchFormProps> = () => {
   };
 
   return (
+    <Space direction="vertical" size="middle" style={{ display: 'flex', width: '100%' }}>
     <Form
       className="SearchForm"
       onChange={onChange}
@@ -61,12 +61,19 @@ const SearchForm: FC<SearchFormProps> = () => {
           <UploadFileInput/>
         </Space>
       </Row>
-      <Flex gap="middle" vertical>
-        {Array.isArray(searchResult) && searchResult.map((itemDetails: any, index) => (
-          <SearchResultItem key={index} itemDetails={{ ...itemDetails, id: index }} />
-        ))}
-      </Flex>
     </Form>
+      <Flex gap="middle" vertical style={{height: '1000px', overflowY: 'scroll', padding:'20px'}}>
+      {Array.isArray(searchResult) && searchResult?.length>0 &&
+      <Typography level={1}>
+            <Text type="warning">
+              Search Result are
+            </Text>
+          </Typography>}
+      {Array.isArray(searchResult) && searchResult.map((url: any, index) => (
+        <SearchResultItem key={index} itemDetails={{ url, id: index }} />
+      ))}
+    </Flex>
+    </Space>
   );
 };
 

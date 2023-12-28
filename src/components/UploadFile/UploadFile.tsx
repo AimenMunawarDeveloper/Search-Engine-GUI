@@ -9,7 +9,6 @@ const UploadFileInput: FC = () => {
   const sendFileContentAPI = (query) => {
     fetch('http://127.0.0.1:8000/api/search-api/', {
       method: "POST",
-      // ... (other options)
       body: JSON.stringify({ query }),
     })
       .then(response => response.json())
